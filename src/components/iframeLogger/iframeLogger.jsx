@@ -18,7 +18,7 @@ export const IframeLogger = ({ isPlaying, setLevel }) => {
         return () => {
             window.removeEventListener('message', handleMessage);
         };
-    }, []);
+    }, [setLevel]);
 
     return (
         <Slide direction="right" in={isPlaying} mountOnEnter unmountOnExit>

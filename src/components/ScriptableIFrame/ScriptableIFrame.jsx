@@ -80,16 +80,17 @@ export const ScriptableIFrame = ({ scripts = [], stylesheets = [], isPlaying }) 
   </body>
 </html>`;
 
-    }, [isPlaying]);
+    }, [isPlaying, scripts, stylesheets]);
 
 
 
     return (
       <iframe 
-          key={isPlaying ? 'playing' : 'stopped'} // Change key based on isPlaying
-          ref={iframeRef} 
-          style={{ width: '100%', height: '100%', border: 'none' }} 
-          frameBorder="0" 
+        title='Game'
+        key={isPlaying ? 'playing' : 'stopped'} // Change key based on isPlaying
+        ref={iframeRef} 
+        style={{ width: '100%', height: '100%', border: 'none' }} 
+        frameBorder="0" 
       />
     );
 };

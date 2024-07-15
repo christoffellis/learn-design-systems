@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Snackbar, Alert } from '@mui/material';
 import { CodeEditor } from '../codeEditor';
-import { DashCenterColumn, GameSection, MainDialog, IframeLogger } from '../../components';
-import { LevelData, LevelEnums } from '../../enums';
+import { DashCenterColumn, GameSection, MainDialog } from '../../components';
+import { LevelEnums } from '../../enums';
 
 const App = () => {
   const [isPlaying, setIsPlaying] = useState(false); // State for player status
@@ -11,7 +11,7 @@ const App = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [scripts, setScripts] = useState([]);
-  const [stylesheets, setStylesheets] = useState([]);
+  const [, setStylesheets] = useState([]);
 
   useEffect(() => {
     if (snackbarMessage) {
@@ -67,13 +67,14 @@ const App = () => {
 
     loadEditableFiles();
     setStylesheets(sheetFiles); // Set stylesheets directly
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sheetFiles]);
 
   useEffect(() => {
     if (level) {
       setMainDialogOpen(true);
     }
-  }, [level.level]);
+  }, [level, level.level]);
 
   const handleLevelChange = (newLevel) => {
     if (newLevel > level.maxReachedLevel) {

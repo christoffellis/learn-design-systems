@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Typography, Snackbar, Alert } from '@mui/material';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import PauseIcon from '@mui/icons-material/Pause';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import React from 'react';
+import { Box, Typography} from '@mui/material';
 import { ScriptableIFrame } from '../ScriptableIFrame';
 
 export const GameSection = ({ isPlaying, scripts, stylesheets, level }) => {

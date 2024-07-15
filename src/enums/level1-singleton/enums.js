@@ -11,7 +11,7 @@ const content = [
 ];
 
 const successText = [
-    `<p>Although in this example, our singleton is quite simple, don\'t be fooled. I\'ve seen projects where a singleton is the main foundation of thw entire running system. Whether this is good practice depends on the implementation, as well as your specific use case.</p>
+    `<p>Although in this example, our singleton is quite simple, don't be fooled. I've seen projects where a singleton is the main foundation of thw entire running system. Whether this is good practice depends on the implementation, as well as your specific use case.</p>
     
     <p>The singleton is useful when you want to avoid having many classes.</p>
 
