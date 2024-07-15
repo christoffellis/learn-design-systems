@@ -1,0 +1,39 @@
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes moveAnimation {
+    0% {
+      right: -15%; /* Start off-screen */
+    }
+    30% {
+      right: calc(50% - 25px); /* Move to center */
+    }
+    50% {
+      right: calc(50% - 25px); /* Hold in the center */
+    }
+    70% {
+      right: calc(50% - 25px); /* Still hold */
+    }
+    100% {
+      right: -15%; /* Move off-screen */
+    }
+  }
+
+  .animated-div {
+    width: 50px;
+    height: 50px;
+    background-color: #3498db; /* Animated div color */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    animation: moveAnimation 5s ease-in-out infinite; /* Animation properties */
+  }
