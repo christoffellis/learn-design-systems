@@ -2,6 +2,7 @@
   "name": "learn-design-systems",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://christoffellis.github.io/learn-design-systems/",
   "dependencies": {
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
