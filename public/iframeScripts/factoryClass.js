@@ -42,6 +42,7 @@ class Factory {
                 width: '5%',
                 height: '20%',
                 content: '',
+                zIndex: 1,
                 color: this._loadingBay.color,
                 transform: 'translate(-25%, 0px)',
                 parent: document.querySelector('.section1'),
@@ -52,9 +53,10 @@ class Factory {
 
         this.createStyledDiv(
             {
-                width: '2.5%',
-                height: '10%',
+                width: '5%',
+                height: '3%',
                 content: '',
+                zIndex: 0,
                 color: this._loadingBay.color,
                 parent: document.querySelector('.section1'),
                 className: 'animated-div',

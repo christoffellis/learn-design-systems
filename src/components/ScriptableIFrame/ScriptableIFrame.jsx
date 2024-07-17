@@ -60,6 +60,7 @@ export const ScriptableIFrame = ({ scripts = [], stylesheets = [], isPlaying }) 
         width: 100vw;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
       }
       .section1 {
         height: 30%;

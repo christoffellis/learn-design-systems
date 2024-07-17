@@ -20,19 +20,30 @@ export const IframeLogger = ({ isPlaying, setLevel }) => {
         };
     }, [setLevel]);
 
+    React.useEffect(() => {
+        if (isPlaying)
+        {
+            setLogs([]);    
+        }
+    }, [isPlaying])
+
     return (
         <Slide direction="right" in={isPlaying} mountOnEnter unmountOnExit>
             <Box
                 sx={{
                     width: 300, // Set your desired width
-                    height: '100%',
-                    background: 'rgba(15, 15, 15, 0.9)', // Change background as needed
-                    boxShadow: 2, // Optional shadow
+                    background: '#222', // Solid grey background
                     overflowY: 'auto', // Enable scrolling if logs exceed height
                     position: 'fixed', // Adjust positioning as needed
                     zIndex: 2,
                     top: 0,
                     left: 0,
+                    margin: 2.5, // Margin
+                    border: '4px solid #484848', // Border with less dark grey
+                    borderRadius: 2,
+                    color: 'white', // White text color
+                    fontFamily: 'monospace', // Monospaced font
+                    padding: 2.5, // Padding inside the box
                 }}
             >
                 {logs.map((log, index) => (
