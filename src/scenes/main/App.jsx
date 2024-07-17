@@ -11,7 +11,7 @@ const App = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [scripts, setScripts] = useState([]);
-  const [, setStylesheets] = useState([]);
+  const [stylesheets, setStylesheets] = useState([]);
 
   useEffect(() => {
     if (snackbarMessage) {
@@ -44,6 +44,11 @@ const App = () => {
       editable: true,
       minActiveLevel: LevelEnums.ObjectPool,
     },
+    { 
+      name: 'level2/deliveryTruck.js',
+      editable: true,
+      minActiveLevel: LevelEnums.ObjectPool,
+    },
   ];
   const sheetFiles = ['style.css'];
 
@@ -68,13 +73,13 @@ const App = () => {
     loadEditableFiles();
     setStylesheets(sheetFiles); // Set stylesheets directly
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sheetFiles]);
+  }, []);
 
   useEffect(() => {
     if (level) {
       setMainDialogOpen(true);
     }
-  }, [level, level.level]);
+  }, [level.level]);
 
   const handleLevelChange = (newLevel) => {
     if (newLevel > level.maxReachedLevel) {

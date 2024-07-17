@@ -3,6 +3,8 @@ class Factory {
         this._management = null; // Use a private variable for management
         this._loadingBay = null;
 
+        this._loadingBayTruck = null;
+
         this._maxReachedLevel = 0;
     }
 
@@ -35,7 +37,6 @@ class Factory {
     // Setter for management
     set loadingBay(value) {
         this._loadingBay = value;
-        console.log(value);
         this.createStyledDiv(
             {
                 width: '5%',
@@ -44,7 +45,20 @@ class Factory {
                 color: this._loadingBay.color,
                 transform: 'translate(-25%, 0px)',
                 parent: document.querySelector('.section1'),
-                className: 'animated-div'
+            }
+        );
+
+        this._loadingBayTruck = {};
+
+        this.createStyledDiv(
+            {
+                width: '2.5%',
+                height: '10%',
+                content: '',
+                color: this._loadingBay.color,
+                parent: document.querySelector('.section1'),
+                className: 'animated-div',
+                transform: 'translate(0px, 0px)'
             }
         );
 
@@ -75,10 +89,11 @@ class Factory {
         div.style.textAlign = 'center';
         div.style.zIndex = zIndex;
         div.style.border = '5px solid black';
+        div.style.animationPlayState = 'var(--animation-play-state)'
         div.innerText = content;
         
         if (!transform) {
-            div.style.animation = 'pulse 1s infinite';
+            div.style.animation = '1s ease 0s infinite normal none var(--animation-play-state) pulse';
         }
     
         if (className) {

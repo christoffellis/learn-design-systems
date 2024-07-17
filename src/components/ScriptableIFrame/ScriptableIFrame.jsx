@@ -1,13 +1,32 @@
 import React, { useEffect, useRef } from 'react';
 
 export const ScriptableIFrame = ({ scripts = [], stylesheets = [], isPlaying }) => {
+
+    const [key, setKey] = React.useState(12);
+
+    console.log(key);
+
     const iframeRef = useRef(null);
     useEffect(() => {
+      
+        
         const iframe = iframeRef.current;
+
+        if (!isPlaying)
+          {
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            const script = iframeDocument.createElement(`script`);
+            script.text = `document.documentElement.style.setProperty('--animation-play-state', 'paused');`;
+            iframeDocument.body.appendChild(script);
+            return;
+          }
 
         // Wait for the iframe to load
         iframe.onload = () => {
+          
             const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+
+            
 
             stylesheets.forEach((scriptContent, index) => {
                 const link = iframeDocument.createElement('link');
@@ -28,7 +47,8 @@ export const ScriptableIFrame = ({ scripts = [], stylesheets = [], isPlaying }) 
                         
         };
 
-        // Set up the iframe's HTML
+        if (isPlaying)
+        {
         iframe.srcdoc = `
 <html>
   <head>
@@ -79,18 +99,20 @@ export const ScriptableIFrame = ({ scripts = [], stylesheets = [], isPlaying }) 
     </div>
   </body>
 </html>`;
+        }
+    setKey(Math.random().toString());
 
-    }, [isPlaying, scripts, stylesheets]);
+    }, [isPlaying]);
 
 
 
     return (
       <iframe 
-        title='Game'
-        key={isPlaying ? 'playing' : 'stopped'} // Change key based on isPlaying
-        ref={iframeRef} 
-        style={{ width: '100%', height: '100%', border: 'none' }} 
-        frameBorder="0" 
+          title='Game'
+          key={'key'}
+          ref={iframeRef} 
+          style={{ width: '100%', height: '100%', border: 'none' }} 
+          frameBorder="0" 
       />
     );
 };
