@@ -76,7 +76,7 @@ export const CodeEditor = ({ fileCode, setFileCode, isPlaying, setLevel }) => {
       <Editor
         height="100%"
         language="javascript"
-        theme="myCustomTheme"
+        theme="vs-dark"
         value={currentFile.code} // Use the code for the current file
         onChange={handleEditorChange} // Handle changes
       />}

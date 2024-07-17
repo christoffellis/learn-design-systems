@@ -16,25 +16,59 @@
 }
 
 @keyframes moveAnimation {
-    0% {
+  0% {
       right: -15%; /* Start off-screen */
-    }
-    12.5% {
-      right: -15%; /* Move to center */
-    }
-    38.5% {
-      right: calc(50% - 25px); /* Move to center */
-    }
-    62.5% {
-      right: calc(50% - 25px); /* Still hold */
-    }
-    87.5% {
-      right: -15%; /* Move off-screen */
-    }
+      --animation-progress: 0;
   }
+  12.5% {
+      right: -15%; /* Move to center */
+      --animation-progress: 0.125;
+  }
+  38.5% {
+      right: calc(50% - 25px); /* Move to center */
+      --animation-progress: 0.385;
+  }
+  50% {
+      right: calc(50% - 25px); /* Move to center */
+      --animation-progress: 0.5;
+  }
+  62.5% {
+      right: calc(50% - 25px); /* Still hold */
+      --animation-progress: 0.625;
+  }
+  87.5% {
+      right: -15%; /* Move off-screen */
+      --animation-progress: 0.875;
+  }
+  99% {
+      right: -15%; /* Move off-screen */
+      --animation-progress: 0.99;
+  }
+  100% {
+      right: -15%; /* Move off-screen */
+      --animation-progress: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+      transform: scale(0);
+  }
+  50% {
+      transform: scale(1.1);
+  }
+  70% {
+      transform: scale(0.9);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+
 
   .animated-div {
     background-color: #3498db; /* Animated div color */
+    color: #333;
     position: absolute;
     animation: moveAnimation 10s ease-in-out infinite;
     animation-play-state: var(--animation-play-state);

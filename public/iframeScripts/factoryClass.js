@@ -95,7 +95,7 @@ class Factory {
         div.innerText = content;
         
         if (!transform) {
-            div.style.animation = '1s ease 0s infinite normal none var(--animation-play-state) pulse';
+            div.style.animation = 'bounceIn 1s ease forwards, pulse 1s ease 0s infinite normal none var(--animation-play-state)';
         }
     
         if (className) {
