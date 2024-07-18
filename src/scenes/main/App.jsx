@@ -97,7 +97,7 @@ const App = () => {
       gap={2}
       sx={{ height: '95vh', backgroundColor: '#333' }}
     >
-      <CodeEditor fileCode={scripts} setFileCode={setScripts} isPlaying={isPlaying} setLevel={handleLevelChange} />
+      <CodeEditor fileCode={scripts} setFileCode={setScripts} isPlaying={isPlaying} setLevel={handleLevelChange} level={level} />
 
       <DashCenterColumn
         isPlaying={isPlaying}

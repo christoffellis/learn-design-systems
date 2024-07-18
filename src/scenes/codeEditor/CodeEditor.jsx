@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Editor from "@monaco-editor/react";
 import * as monaco from 'monaco-editor';
 import { IframeLogger } from '../../components';
+import { FileTreeView } from '../../components/FileTreeView';
 
 // Define custom theme for Monaco editor
 monaco.editor.defineTheme('myCustomTheme', {
@@ -24,8 +25,9 @@ monaco.editor.defineTheme('myCustomTheme', {
   }
 });
 
-export const CodeEditor = ({ fileCode, setFileCode, isPlaying, setLevel }) => {
+export const CodeEditor = ({ fileCode, setFileCode, isPlaying, setLevel, level }) => {
   const [currentFile, setCurrentFile] = useState();
+  const [showSidebar, setShowSidebar] = useState(false);
 
   useEffect(() => {
     if (fileCode) {
@@ -39,10 +41,9 @@ export const CodeEditor = ({ fileCode, setFileCode, isPlaying, setLevel }) => {
             })
           }
         }
-        
     }
-  }, [fileCode]);
-  
+  }, [level.level]);
+
   const handleEditorChange = (value) => {
     const newFileCode = fileCode.map((file) => {
       if (file.name === currentFile.name) {
@@ -56,20 +57,53 @@ export const CodeEditor = ({ fileCode, setFileCode, isPlaying, setLevel }) => {
 
     setFileCode(newFileCode);
   };
-  
+
+  const handleMouseMove = (event) => {
+    if (showSidebar)
+    {
+      if (event.clientX <= 200) {
+        setShowSidebar(true);
+      } else {
+        setShowSidebar(false);
+      }
+    }
+    else
+    {
+      if (event.clientX <= 50) {
+        setShowSidebar(true);
+      } else {
+        setShowSidebar(false);
+      }
+    }
+  };
 
   return (
     <Box
+      onMouseMove={handleMouseMove}
       sx={{
-        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
         width: '40%',
         padding: 0,
         backgroundColor: '#f0f0f0',
         borderRadius: 2,
         overflow: 'hidden',
         boxShadow: 3,
+        position: 'relative', // Add relative positioning
       }}
     >
+      <Box
+        sx={{
+          padding: 1,
+          backgroundColor: '#222',
+          color: '#fff',
+          textAlign: 'center',
+          fontFamily: 'monospace'
+        }}
+      >
+        {currentFile?.name || 'No file selected'}
+      </Box>
+
       <IframeLogger isPlaying={isPlaying} setLevel={setLevel}/>
 
       {currentFile &&
@@ -80,7 +114,12 @@ export const CodeEditor = ({ fileCode, setFileCode, isPlaying, setLevel }) => {
         value={currentFile.code} // Use the code for the current file
         onChange={handleEditorChange} // Handle changes
       />}
-      
+
+      <FileTreeView
+        scripts={fileCode}
+        showSidebar={showSidebar}
+        setCurrentFile={setCurrentFile}
+      />
     </Box>
   );
 };
