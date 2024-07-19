@@ -46,7 +46,9 @@ export const CodeEditor = ({ fileCode, setFileCode, isPlaying, setLevel, level }
 
   const handleEditorChange = (value) => {
     const newFileCode = fileCode.map((file) => {
-      if (file.name === currentFile.name) {
+      console.log(currentFile.name, `/${file.name}`);
+      if (`/${file.name}` === currentFile.name) {
+        console.log(value);
         return {
           ...file,
           content: value, // Update the content property

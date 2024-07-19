@@ -44,7 +44,7 @@ const renderTree = (nodes, handleClick) => (
     label={nodes.name}
     onClick={() => {
       if (!nodes.children.length) {
-        handleClick({ name: nodes.name, content: nodes.content });
+        handleClick({ id: nodes.id, name: nodes.name, content: nodes.content });
       }
     }}
   >
@@ -58,7 +58,7 @@ export const FileTreeView = ({ scripts, showSidebar, setCurrentFile }) => {
 
   const handleClick = (file) => {
     setCurrentFile({
-      name: file.name || '',
+      name: file.id || '',
       code: file.content || '',
     });
   };

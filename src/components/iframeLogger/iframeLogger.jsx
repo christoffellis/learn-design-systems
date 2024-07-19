@@ -6,8 +6,9 @@ export const IframeLogger = ({ isPlaying, setLevel }) => {
 
     useEffect(() => {
         const handleMessage = (event) => {
-            if (event.data.level) {
+            if (event.data.level && typeof event.data.level[0] == "object") {
                 setLevel(event.data.level[0].level);
+                console.log('set level to ', event.data.level, event.data.level[0].level);
             }
             setLogs((prevLogs) => [...prevLogs, event.data]);
         };

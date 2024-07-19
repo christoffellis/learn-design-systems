@@ -4,7 +4,6 @@ export const ScriptableIFrame = ({ scripts = [], stylesheets = [], isPlaying }) 
 
     const [key, setKey] = React.useState(12);
 
-    console.log(key);
 
     const iframeRef = useRef(null);
     useEffect(() => {
@@ -41,6 +40,7 @@ export const ScriptableIFrame = ({ scripts = [], stylesheets = [], isPlaying }) 
             scripts.forEach((scriptContent, index) => {
                 const script = iframeDocument.createElement(`script`);
                 script.text = scriptContent.content;
+                console.log(scriptContent.content);
                 iframeDocument.body.appendChild(script);
             });
 
